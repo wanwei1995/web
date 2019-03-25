@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<body class="layui-layout-body">
+	<div th:fragment="semantic">
+
+		<div class="semantic">
+		    <script src="static/js/jquery.min.js"></script>
+            <script src="static/js/jquery.js"></script>
+		    <link rel="stylesheet" href="static/semantic/semantic.min.css" />
+            <script src="static/semantic/semantic.min.js"></script>
+			<link rel="stylesheet" href="static/layui/css/layui.css"/>
+			<script src="static/layer/layer.js"></script>
+			<script src="static/layui/layui.js"></script>
+            <script th:src="@{static/js/menuLoad.js}"></script>
+		</div>
+
+	</div>
+
+
+
+
+	<div th:fragment="footer" class="ui fixed inverted red menu">
+		<div class="layui-footer">
+			<!-- 底部固定区域 -->
+			ww.com.cn ...功能管理系统
+		</div>
+	</div>
+</body>
+</html>

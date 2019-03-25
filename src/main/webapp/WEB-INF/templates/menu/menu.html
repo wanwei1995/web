@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org"
+ xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<body class="layui-layout-body">
+<div th:fragment="menu">
+<script th:src="@{static/js/menuLoad.js}"></script>
+<div class="layui-header">
+<script type="text/javascript">
+      function updatePassword() {
+        $.ajax({
+          type: "POST",
+          url: "user/update-password",
+          cache: false,
+          timeout: 600000,
+          success: function (data) {
+            layer.open({
+              /* type: 1, */
+              title: '修改当前用户密码',
+              skin: 'layui-layer-rim', //样式类名
+              anim: 2,
+              area: ['450px', '550px'], //宽高
+              shadeClose: false, //开启遮罩关闭
+              content: data,
+              btn: '关闭',
+              yes: function () {
+                layer.closeAll();
+              }
+            });
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            alert("error");
+            alert(jqXHR.responseText);
+          }
+        });
+      }
+    </script>
+    <div class="layui-logo">功能管理系统</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+           <shiro:user>欢迎 :
+                <shiro:principal property="displayName"/>
+            </shiro:user>
+        </a>
+        <dl class="layui-nav-child">
+          <dd> <a class="item" onclick="updatePassword()">更改密码</a>
+           </dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a th:href="@{/logout}">退出</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">导航页</a>
+          <dl class="layui-nav-child">
+             <dd><a id = "urlManage" class="item" th:onclick="'load(\'' + @{/sql} + '\',this);'" target="_blank">测试数据库连接</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+        var element = layui.element;
+      });
+</script>
+ </div>
+</body>
+</html>
