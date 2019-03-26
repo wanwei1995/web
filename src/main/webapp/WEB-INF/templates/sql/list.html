@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="menu/import::semantic">
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>人员信息管理页面</title>
+</head>
+<body class="layui-layout-body">
+	<div class="layui-body" style="margin-top: 20px">
+		<!-- 内容主体区域 -->
+		<div class="ui main container">
+			<div class="ui clearing segment">
+				<form th:action="@{/sql}" id="filterForm" class="ui form"
+					method="get">
+					<div class="inline fields">
+						<div class="field">
+							<label>id</label> <input type="text" name="id"/>
+						</div>
+						<div class="ui buttons">
+							<button class="ui red button" type="submit">查询</button>
+						</div>
+						<div class="ui buttons">
+							<button id="clear" class="ui white button" type="button"
+								onclick="clearIs()">重置</button>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<div style="margin-top: 5px">
+				<form action="#" id="form" class="ui form" method="post">
+					<table class="ui red table">
+						<thead>
+							<tr class="single line">
+								<th>name</th>
+								<th>url</th>
+								<th>点击次数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td th:text="${urlManage.name}"></td>
+								<td th:text="${urlManage.url}"></td>
+								<td th:text="${urlManage.clickTimes}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+
+$(function () {
+    $(".ui.dropdown").dropdown();
+  })
+	function clearIs() {
+		$("input").each(function() {
+			var value = $(this).val("");
+		});
+	}
+</script>
+</html>
